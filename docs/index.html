@@ -1,0 +1,537 @@
+<html lang="en" ng-app="StarterApp">
+<head>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <meta charset="UTF-8">
+    <title>Титульный лист</title>
+</head>
+<body layout="row" ng-controller="AppCtrl">
+    <div flex="50" layout="row">
+        <object flex="100" data="https://s3-us-west-1.amazonaws.com/ssu-files/file2.pdf"></object>
+    </div>
+    <div flex=50 layout="column" class="layout-padding">
+        <h1>Создать титульный лист</h1>
+
+        <md-content flex="100">
+        <!-- edtype - тип обучения - одно из значений: spec - специальность bachelor - бакалавриат (по умолчанию) master - магистратура -->
+        <md-autocomplete
+          ng-disabled="edtype.isDisabled"
+          md-no-cache="edtype.noCache"
+          md-selected-item="edtype.selectedItem"
+          md-search-text-change="edtype.searchTextChange(edtype.searchText)"
+          md-search-text="edtype.searchText"
+          md-selected-item-change="edtype.selectedItemChange(item)"
+          md-items="item in edtype.querySearch(edtype.searchText)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Какой тип обучения?">
+            <md-item-template>
+                <span md-highlight-text="edtype.searchText" md-highlight-flags="^i">{{item.display}}</span>
+            </md-item-template>
+            <md-not-found>
+                No states matching "{{edtype.searchText}}" were found.
+                <a ng-click="edtype.newState(edtype.searchText)">Create a new one!</a>
+            </md-not-found>
+         </md-autocomplete><br>
+
+        <!-- edform - форма обучения - одно из значений: och - очное (по умолчанию) zaoch - заочное -->
+        <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedItem"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="ctrl.searchText"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Какая форма обучения?">
+            <md-item-template>
+                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+            </md-item-template>
+            <md-not-found>
+                No states matching "{{ctrl.searchText}}" were found.
+                <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+            </md-not-found>
+         </md-autocomplete><br>
+
+        <!-- worktype - тип работы - одно из значений: referat - реферат coursework - курсовая работа (по умолчанию) diploma - дипломная работа pract - отчет по практике -->
+        <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedItem"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="ctrl.searchText"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Какой тип работы?">
+            <md-item-template>
+                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+            </md-item-template>
+            <md-not-found>
+                No states matching "{{ctrl.searchText}}" were found.
+                <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+            </md-not-found>
+         </md-autocomplete><br>
+
+        <!-- chair - Кафедра (в родительном падеже) -->
+        <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedItem"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="ctrl.searchText"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Как казывается кафедра?">
+            <md-item-template>
+                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+            </md-item-template>
+            <md-not-found>
+                No states matching "{{ctrl.searchText}}" were found.
+                <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+            </md-not-found>
+         </md-autocomplete><br>
+
+        <!-- title - название работы -->
+        <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedItem"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="ctrl.searchText"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Как называется работа?">
+            <md-item-template>
+                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+            </md-item-template>
+            <md-not-found>
+                No states matching "{{ctrl.searchText}}" were found.
+                <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+            </md-not-found>
+         </md-autocomplete><br>
+
+        <!-- course - курс -->
+        <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedItem"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="ctrl.searchText"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Какой курс?">
+            <md-item-template>
+                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+            </md-item-template>
+            <md-not-found>
+                No states matching "{{ctrl.searchText}}" were found.
+                <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+            </md-not-found>
+         </md-autocomplete><br>
+
+        <!-- group - номер группы -->
+        <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedItem"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="ctrl.searchText"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Какой номер группы?">
+            <md-item-template>
+                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+            </md-item-template>
+            <md-not-found>
+                No states matching "{{ctrl.searchText}}" were found.
+                <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+            </md-not-found>
+         </md-autocomplete><br>
+
+        <!-- napravlenie - направление -->
+        <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedItem"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="ctrl.searchText"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Как казывается направление?">
+            <md-item-template>
+                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+            </md-item-template>
+            <md-not-found>
+                No states matching "{{ctrl.searchText}}" were found.
+                <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+            </md-not-found>
+         </md-autocomplete><br>
+
+        <!-- female - пол, по умолчанию false -->
+
+        <!-- author - фио в родительном падеже -->
+        <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedItem"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="ctrl.searchText"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Ваше имя в родительном падеже?">
+            <md-item-template>
+                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+            </md-item-template>
+            <md-not-found>
+                No states matching "{{ctrl.searchText}}" were found.
+                <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+            </md-not-found>
+         </md-autocomplete><br>
+
+        <!-- chtitle - заведующий кафедрой - степень, звание chname - инициалы и фамилия -->
+        <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedItem"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="ctrl.searchText"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Имя заведующего кафедрой? (пример: Иванов И.П.)">
+            <md-item-template>
+                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+            </md-item-template>
+            <md-not-found>
+                No states matching "{{ctrl.searchText}}" were found.
+                <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+            </md-not-found>
+         </md-autocomplete><br>
+
+        <!-- satitle - Научный руководитель (для реферата преподаватель проверяющий работу) saname -->
+        <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedItem"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="ctrl.searchText"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Имя научного руководителя? (пример: Петров Д.И.)">
+            <md-item-template>
+                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+            </md-item-template>
+            <md-not-found>
+                No states matching "{{ctrl.searchText}}" were found.
+                <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+            </md-not-found>
+         </md-autocomplete><br>
+
+        <!-- patitle - Руководитель практики от организации (только для практики, для остальных типов работ не используется) paname - -->
+        <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedItem"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="ctrl.searchText"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Имя руководителя практики от организации? (пример: Сидоров Ф.Д.)">
+            <md-item-template>
+                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+            </md-item-template>
+            <md-not-found>
+                No states matching "{{ctrl.searchText}}" were found.
+                <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+            </md-not-found>
+         </md-autocomplete><br>
+
+        <!-- term - Семестр (только для практики, для остальных типов работ не используется) -->
+        <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedItem"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="ctrl.searchText"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Какой семестр? (пример: Иванов И.П.)">
+            <md-item-template>
+                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+            </md-item-template>
+            <md-not-found>
+                No states matching "{{ctrl.searchText}}" were found.
+                <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+            </md-not-found>
+         </md-autocomplete><br>
+
+        <!-- practtype - Наименование практики (только для практики, для остальных типов работ не используется) -->
+        <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedItem"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="ctrl.searchText"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Наименование практики?">
+            <md-item-template>
+                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+            </md-item-template>
+            <md-not-found>
+                No states matching "{{ctrl.searchText}}" were found.
+                <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+            </md-not-found>
+         </md-autocomplete><br>
+
+        <!-- duration - Продолжительность практики (количество недель) (только для практики, для остальных типов работ не используется) -->
+        <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedItem"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="ctrl.searchText"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Продолжительность практики в неделях?">
+            <md-item-template>
+                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+            </md-item-template>
+            <md-not-found>
+                No states matching "{{ctrl.searchText}}" were found.
+                <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+            </md-not-found>
+         </md-autocomplete><br>
+
+        <!-- practStart -  -->
+        <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedItem"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="ctrl.searchText"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Дата начала практики?">
+            <md-item-template>
+                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+            </md-item-template>
+            <md-not-found>
+                No states matching "{{ctrl.searchText}}" were found.
+                <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+            </md-not-found>
+         </md-autocomplete><br>
+
+        <!-- practFinish - -->
+        <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedItem"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="ctrl.searchText"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Дата конца практики?">
+            <md-item-template>
+                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+            </md-item-template>
+            <md-not-found>
+                No states matching "{{ctrl.searchText}}" were found.
+                <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+            </md-not-found>
+         </md-autocomplete><br>
+
+        <!-- date - -->
+        <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedItem"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="ctrl.searchText"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Какой год выполнения?">
+            <md-item-template>
+                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+            </md-item-template>
+            <md-not-found>
+                No states matching "{{ctrl.searchText}}" were found.
+                <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+            </md-not-found>
+         </md-autocomplete><br>
+
+         <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+            <md-button class="md-raised md-primary">Создать титульный лист</md-button>
+            <md-button class="md-raised md-warn">Скачать</md-button>
+        </section>
+
+         </md-content>
+
+    </div>
+
+<!-- <div flex="75">
+    <div id="map" style="width: 100%; height: 100%"></div>
+</div>
+<div flex="25">
+    <md-content layout="column"  class="md-padding" style="overflow: scroll;">
+        <div layout="row">
+            <a href="http://realty.maxkarelov.ru:3000" flex="100" target="_blank" class="md-raised md-button md-primary">Перейти в аналитику</a>
+        </div><br>
+
+        <h4 style="margin: 0">Найдено: {{ totalFound || 'не определен поиск' }}</h4>
+
+        <div layout="column" style="height: 50px;">
+            <md-select ng-model="filterTimestamp" ng-placeholder="Данные за время">
+                <md-option ng-value="{{ ts }}" ng-repeat="ts in timestamps" ng-selected="ts === timestamps[0]">{{ ts }}</md-option>
+            </md-select>
+        </div>
+
+        <md-button class="md-raised md-primary" ng-click="getFilteredData()">Получить данные</md-button>
+
+        <div layout="column" style="height: 50px;">
+            <md-select ng-model="filterRealtyType" ng-placeholder="Тип недвижимости">
+                <md-option ng-value="rooms">Комнаты</md-option>
+                <md-option ng-value="flats">Квартиры</md-option>
+            </md-select>
+        </div>
+
+        <div layout="column" style="height: 50px;">
+            <md-select ng-model="filter.realty_type" ng-value="flats" ng-placeholder="Тип сделки">
+                <md-option ng-value="rooms">Аренда</md-option>
+                <md-option ng-value="flats">Продажа</md-option>
+            </md-select>
+        </div>
+
+        <div layout="column" style="height: 50px;">
+            <md-select ng-model="filter.realty_type" ng-value="flats" ng-placeholder="Район города">
+                <md-option ng-value="oktyabrsky">Октябрьский</md-option>
+                <md-option ng-value="kirovsky">Кировский</md-option>
+                <md-option ng-value="frunzensky">Фрунзенский</md-option>
+                <md-option ng-value="leninsky">Ленинский</md-option>
+                <md-option ng-value="voljsky">Волжский</md-option>
+                <md-option ng-value="zovodskoy">Заводской</md-option>
+                <md-option ng-value="all">По всем районам</md-option>
+            </md-select>
+        </div>
+
+        <div layout-gt-sm="row" style="height: 50px;">
+            <md-input-container class="md-icon-float md-icon-right md-block">
+                <label>Этаж от</label>
+                <md-icon md-svg-src="img/icons/ic_card_giftcard_24px.svg"></md-icon>
+                <input ng-model="user.donation" type="number" step="1">
+                <md-icon md-svg-src="img/icons/ic_euro_24px.svg"></md-icon>
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-icon-right md-block">
+                <label>Этаж до</label>
+                <md-icon md-svg-src="img/icons/ic_card_giftcard_24px.svg"></md-icon>
+                <input ng-model="user.donation" type="number" step="1">
+                <md-icon md-svg-src="img/icons/ic_euro_24px.svg"></md-icon>
+            </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row" style="height: 50px;">
+            <md-input-container class="md-icon-float md-icon-right md-block">
+                <label>Комнат от</label>
+                <md-icon md-svg-src="img/icons/ic_card_giftcard_24px.svg"></md-icon>
+                <input ng-model="user.donation" type="number" step="1">
+                <md-icon md-svg-src="img/icons/ic_euro_24px.svg"></md-icon>
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-icon-right md-block">
+                <label>Комнат до</label>
+                <md-icon md-svg-src="img/icons/ic_card_giftcard_24px.svg"></md-icon>
+                <input ng-model="user.donation" type="number" step="1">
+                <md-icon md-svg-src="img/icons/ic_euro_24px.svg"></md-icon>
+            </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row" style="height: 50px;">
+            <md-input-container class="md-icon-float md-icon-right md-block">
+                <label>Цена от</label>
+                <md-icon md-svg-src="img/icons/ic_card_giftcard_24px.svg"></md-icon>
+                <input ng-model="user.donation" type="number" step="1">
+                <md-icon md-svg-src="img/icons/ic_euro_24px.svg"></md-icon>
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-icon-right md-block">
+                <label>Цена до</label>
+                <md-icon md-svg-src="img/icons/ic_card_giftcard_24px.svg"></md-icon>
+                <input ng-model="user.donation" type="number" step="1">
+                <md-icon md-svg-src="img/icons/ic_euro_24px.svg"></md-icon>
+            </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row" style="height: 50px;">
+            <md-input-container class="md-icon-float md-icon-right md-block">
+                <label>Площадь от</label>
+                <md-icon md-svg-src="img/icons/ic_card_giftcard_24px.svg"></md-icon>
+                <input ng-model="user.donation" type="number" step="1">
+                <md-icon md-svg-src="img/icons/ic_euro_24px.svg"></md-icon>
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-icon-right md-block">
+                <label>Площадь до</label>
+                <md-icon md-svg-src="img/icons/ic_card_giftcard_24px.svg"></md-icon>
+                <input ng-model="user.donation" type="number" step="1">
+                <md-icon md-svg-src="img/icons/ic_euro_24px.svg"></md-icon>
+            </md-input-container>
+        </div>
+
+        <hr/>
+
+        <md-button class="md-raised md-primary">Получить интерполирование</md-button>
+
+        <div layout="column" style="height: 50px;">
+            <md-select ng-model="filter.realty_type" ng-value="flats" ng-placeholder="Тип сделки">
+                <md-option ng-value="flats">2017-05-26</md-option>
+                <md-option ng-value="rooms">Выбрать существующий отчет</md-option>
+            </md-select>
+        </div>
+
+        <md-button class="md-raised md-primary">Загрузить на карту</md-button>
+
+    </md-content>
+</div> -->
+
+<!-- Angular Material Dependencies -->
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+<script src="//cdn.jsdelivr.net/angular-material-icons/0.4.0/angular-material-icons.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

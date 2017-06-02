@@ -1,0 +1,21 @@
+*.pyc
+*.zip
+
+# dependency folders
+certifi*
+chardet*
+idna*
+requests*
+urllib3*
+PyPDF2*
+boto3*
+botocore*
+concurrent*
+dateutil*
+docutil*
+futures*
+jmespath*
+python_dateutil*
+s3transfer*
+six*
+
